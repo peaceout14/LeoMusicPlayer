@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
+from dotenv import load_dotenv
 import sqlite3
 import yt_dlp
 import os
@@ -23,7 +24,9 @@ DB_PATH      = "music_library.db"
 
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
-YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY", "")
+load_dotenv()
+
+YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 
 
 def init_db():
